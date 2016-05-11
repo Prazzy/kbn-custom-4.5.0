@@ -238,12 +238,12 @@ define(function (require) {
           .then(function (hits) {
             var queryFilter = Private(require('ui/filter_bar/query_filter'));
             var filters = queryFilter.getGlobalFilters();
-            var filter_operator = 'ALL';
-            if (!_.isUndefined(filters) && filters.length) filter_operator = filters[0].meta.value;
+            var operator = ['ALL'];
+            if (!_.isUndefined(filters) && filters.length) var filter_operator = filters[0].meta.value;
             var appTitle = $scope.$root.chrome.getAppTitle();
             var appTitle_lst = appTitle.split('_');
             var app = appTitle_lst[0];
-            var operator = filter_operator;
+            operator.push(filter_operator);
 
             // ensure that we don't display old results
             // as we can't really cancel requests
@@ -255,7 +255,7 @@ define(function (require) {
                 self.hits = [];
                 hits.hits.forEach(function (row) {
                   var options = JSON.parse(row.optionsJSON);
-                  if (options.operator == operator && options.app == app) {
+                  if (_.contains(operator, options.operator) && options.app == app) {
                     self.hits.push(row)
                   }
                 });
