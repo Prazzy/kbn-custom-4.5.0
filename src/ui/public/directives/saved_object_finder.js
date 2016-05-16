@@ -255,7 +255,7 @@ define(function (require) {
                 self.hits = [];
                 hits.hits.forEach(function (row) {
                   var options = JSON.parse(row.optionsJSON);
-                  if (_.contains(operator, options.operator) && options.app == app) {
+                  if (_.contains(operator, options.operator) && options.app == app && !options.order) {
                     self.hits.push(row)
                   }
                 });
