@@ -97,12 +97,13 @@ define(function (require) {
             openRowHtml
           ];
 
-          if (indexPattern.timeFieldName) {
-            newHtmls.push(cellTemplate({
-              timefield: true,
-              formatted: _displayField(row, indexPattern.timeFieldName)
-            }));
-          }
+          //PAC: Default Time coulmn is not required..
+          //if (indexPattern.timeFieldName) {
+          //  newHtmls.push(cellTemplate({
+          //    timefield: true,
+          //    formatted: _displayField(row, indexPattern.timeFieldName)
+          //  }));
+          //}
 
           $scope.columns.forEach(function (column) {
             newHtmls.push(cellTemplate({
